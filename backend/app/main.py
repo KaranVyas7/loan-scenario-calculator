@@ -7,9 +7,17 @@ from app.db import create_db_and_tables, get_session
 from app.models import LoanScenario
 from app.schemas import LoanCreate, LoanOut, LoanDetail
 from app.loan_math import compute_monthly_payment, compute_schedule_preview
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="Loan Scenario Calculator")
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.on_event("startup")
 def on_startup():

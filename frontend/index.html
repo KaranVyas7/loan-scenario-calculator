@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loan Scenario Calculator</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header>
+        <h1>Loan Scenario Calculator</h1>
+        <p class="muted">Create a loan scenario, see monthly payment, and view an amortization preview.</p>
+      </header>
+
+      <section class="card">
+        <h2>Create a Loan Scenario</h2>
+
+        <form id="loan-form">
+          <div class="grid">
+            <label>
+              Loan Amount
+              <input id="amount" name="amount" type="number" step="0.01" min="0" placeholder="250000" required />
+            </label>
+
+            <label>
+              APR (%)
+              <input id="apr" name="apr" type="number" step="0.01" min="0" max="100" placeholder="5.5" required />
+            </label>
+
+            <label>
+              Term (months)
+              <input id="term_months" name="term_months" type="number" step="1" min="1" max="480" placeholder="360" required />
+            </label>
+          </div>
+
+          <div class="actions">
+            <button type="submit" id="submit-btn">Calculate & Save</button>
+            <button type="button" id="reset-btn" class="secondary">Reset</button>
+          </div>
+        </form>
+
+        <div id="form-result" class="result" aria-live="polite"></div>
+        <div id="form-errors" class="errors" aria-live="polite"></div>
+      </section>
+
+      <section class="card">
+        <div class="row">
+          <h2>Saved Loan Scenarios</h2>
+          <button id="refresh-btn" class="secondary" type="button">Refresh</button>
+        </div>
+
+        <div id="loan-list" class="list"></div>
+      </section>
+
+      <section class="card" id="detail-card" hidden>
+        <h2>Scenario Details</h2>
+        <div id="loan-detail" class="detail"></div>
+
+        <h3>Amortization Schedule Preview</h3>
+        <div class="table-wrap">
+          <table id="schedule-table">
+            <thead>
+              <tr>
+                <th>Month</th>
+                <th>Interest Paid</th>
+                <th>Principal Paid</th>
+                <th>Remaining Balance</th>
+              </tr>
+            </thead>
+            <tbody id="schedule-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <footer class="muted small">
+        Backend expected at <code id="api-base"></code>
+      </footer>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
