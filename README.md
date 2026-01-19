@@ -1,12 +1,11 @@
-# Loan Scenario Calculator
-Full-stack project for a Loan Scenario Calculator. Users can create loan scenarios, see the monthly payment, and view an amortization schedule preview. Scenarios are saved and can be viewed later.
+# Project Overview: Loan Scenario Calculator
+This is a Full-stack project for a Loan Scenario Calculator. Users can create loan scenarios, see the monthly payment, and view an amortization schedule preview. Scenarios are saved and can be viewed later.
 
 ## Requirements Covered
 - Backend API (FastAPI)
   - `POST /loans` creates a scenario and returns monthly payment
   - `GET /loans` lists saved scenarios (most recent first)
   - `GET /loans/{id}` returns scenario details + amortization schedule preview (first 12 months, or full schedule if term < 12)
-  - I used SQLite for quick local setup. The persistence layer uses SQLModel, so switching to PostgreSQL (as specified in the prompt) would mainly involve updating the database URL.
   - Input validation: amount > 0, apr 0–100, term_months 1–480
   - 404 returned if loan id does not exist
   - 0% APR loans supported
@@ -19,8 +18,9 @@ Full-stack project for a Loan Scenario Calculator. Users can create loan scenari
   - API test for `POST /loans` and `GET /loans/{id}`
 
 ## Tech Stack
-- Backend: FastAPI + SQLModel
+- Backend: FastAPI (Python) + SQLModel
 - Database: SQLite (local file)
+  - I used SQLite for quick local setup. The persistence layer uses SQLModel, so switching to PostgreSQL (if preferred) would mainly involve updating the database URL.
 - Frontend: HTML/CSS/JavaScript (fetch)
 - Tests: pytest
 
@@ -63,6 +63,7 @@ python3 -m http.server 5500
 ```
 Open:
 - http://127.0.0.1:5500
+
 Frontend expects backend at:
 - http://127.0.0.1:8000
 
@@ -92,4 +93,4 @@ pytest -q
   "term_months": 360,
   "monthly_payment": 1419.47
 }
-```
+``` 
