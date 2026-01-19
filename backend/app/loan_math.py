@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from decimal import Decimal, ROUND_HALF_UP, getcontext
 
-getcontext().prec = 28  # stable precision for money math
+getcontext().prec = 28 
 
 CENT = Decimal("0.01")
 
@@ -26,7 +26,7 @@ def compute_monthly_payment(amount: Decimal, apr: Decimal, term_months: int) -> 
     if apr == 0:
         return q2(amount / Decimal(term_months))
 
-    r = (apr / Decimal("100")) / Decimal("12")  # monthly rate
+    r = (apr / Decimal("100")) / Decimal("12") 
     n = Decimal(term_months)
 
     one_plus_r_pow_n = (Decimal("1") + r) ** n
